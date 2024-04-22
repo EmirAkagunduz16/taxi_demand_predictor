@@ -1,0 +1,10 @@
+.env
+data/
+**/__pycache__
+*.parquet
+*.shp
+*.pkl
+.TODOS
+.idea/
+.vscode/
+.venv/Lib/site-packages/xgboost/lib/xgboost.dll
