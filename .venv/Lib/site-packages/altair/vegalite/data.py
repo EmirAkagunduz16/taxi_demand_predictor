@@ -12,18 +12,22 @@ from ..utils.data import (
     check_data_type,
 )
 from ..utils.data import DataTransformerRegistry as _DataTransformerRegistry
+from ..utils.data import DataType, ToValuesReturnType
+from ..utils.plugin_registry import PluginEnabler
 
 
 @curried.curry
-def default_data_transformer(data, max_rows=5000):
+def default_data_transformer(
+    data: DataType, max_rows: int = 5000
+) -> ToValuesReturnType:
     return curried.pipe(data, limit_rows(max_rows=max_rows), to_values)
 
 
 class DataTransformerRegistry(_DataTransformerRegistry):
-    def disable_max_rows(self):
+    def disable_max_rows(self) -> PluginEnabler:
         """Disable the MaxRowsError."""
         options = self.options
-        if self.active == "default":
+        if self.active in ("default", "vegafusion"):
             options = options.copy()
             options["max_rows"] = None
         return self.enable(**options)
