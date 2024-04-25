@@ -72,45 +72,6 @@ with st.spinner(text="Fetching batch of features used in the last run"):
     print(f'{features_df}')
 
 
-@st.cache_data
-def load_batch_of_features_from_store(current_date: datetime) -> pd.DataFrame:
-    """Wrapped version of src.inference.load_batch_of_features_from_store, so
-    we can add Streamlit caching
-
-    Args:
-        current_date (datetime): _description_
-
-    Returns:
-        pd.DataFrame: n_features + 2 columns:
-            - `rides_previous_N_hour`
-            - `rides_previous_{N-1}_hour`
-            - ...
-            - `rides_previous_1_hour`
-            - `pickup_hour`
-            - `pickup_location_id`
-    """
-    return load_batch_of_features_from_store(current_date)
-
-@st.cache_data
-def load_model_from_registry(
-    from_pickup_hour: datetime,
-    to_pickup_hour: datetime
-    ) -> pd.DataFrame:
-    """
-    Wrapped version of src.inference.load_predictions_from_store, so we
-    can add Streamlit caching
-
-    Args:
-        from_pickup_hour (datetime): min datetime (rounded hour) for which we want to get
-        predictions
-
-        to_pickup_hour (datetime): max datetime (rounded hour) for which we want to get
-        predictions
-
-    Returns:
-        pd.DataFrame: 2 columns: pickup_location_id, predicted_demand
-    """
-    return load_model_from_registry(from_pickup_hour, to_pickup_hour)
 
 with st.spinner(text="Loading ML model from the registry"):
    model = load_model_from_registry()
@@ -253,7 +214,45 @@ else:
 
 
 
+# @st.cache_data
+# def load_batch_of_features_from_store(current_date: datetime) -> pd.DataFrame:
+#     """Wrapped version of src.inference.load_batch_of_features_from_store, so
+#     we can add Streamlit caching
 
+#     Args:
+#         current_date (datetime): _description_
+
+#     Returns:
+#         pd.DataFrame: n_features + 2 columns:
+#             - `rides_previous_N_hour`
+#             - `rides_previous_{N-1}_hour`
+#             - ...
+#             - `rides_previous_1_hour`
+#             - `pickup_hour`
+#             - `pickup_location_id`
+#     """
+#     return load_batch_of_features_from_store(current_date)
+
+# @st.cache_data
+# def load_model_from_registry(
+#     from_pickup_hour: datetime,
+#     to_pickup_hour: datetime
+#     ) -> pd.DataFrame:
+#     """
+#     Wrapped version of src.inference.load_predictions_from_store, so we
+#     can add Streamlit caching
+
+#     Args:
+#         from_pickup_hour (datetime): min datetime (rounded hour) for which we want to get
+#         predictions
+
+#         to_pickup_hour (datetime): max datetime (rounded hour) for which we want to get
+#         predictions
+
+#     Returns:
+#         pd.DataFrame: 2 columns: pickup_location_id, predicted_demand
+#     """
+#     return load_model_from_registry(from_pickup_hour, to_pickup_hour)
 
 
 
