@@ -26,6 +26,7 @@ streamlit = "^1.33.0"
 pydeck = "^0.8.0"
 discordwebhook = "^1.0.3"
 comet-ml = "^3.41.0"
+retry = "^0.9.2"
 
 
 [tool.poetry.group.dev.dependencies]
