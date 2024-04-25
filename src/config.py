@@ -8,7 +8,7 @@ from src.paths import PARENT_DIR
 # load key-value pairs from .env file located in the parent directory
 load_dotenv(PARENT_DIR / '.env')
 
-HOPSWORKS_PROJECT_NAME = 'taxi_demand'
+HOPSWORKS_PROJECT_NAME = 'taxi_demand_service'
 try:
     # HOPSWORKS_PROJECT_NAME = os.environ['HOPSWORKS_PROJECT_NAME']
     HOPSWORKS_API_KEY = os.environ['HOPSWORKS_API_KEY']
